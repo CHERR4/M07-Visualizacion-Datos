@@ -1,12 +1,4 @@
-body {
-  background: orange;
-}
-
-h1, h2 {
+h1,
+h2 {
   font-family: Lato;
-}
-
-#viz {
-  height: 200px;
-  width: 500px;
 }

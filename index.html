@@ -1,45 +1,23 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <meta charset="UTF-8">
 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3plus/1.9.2/d3plus.full.min.js"></script>
-
-  <script src="script.js"></script>
-
-  <script type="text/javascript">
-    var data = [
-      {id: "alpha", value: 29},
-      {id: "beta",  value: 10}
-    ];
-
-new d3plus.Treemap()
-  .data(data)
-  .groupBy("id")
-  .select("#viz")
-  .sum("value")
-  .render();
-  </script>
 </head>
 
 <body>
   <h1>Visualización - AG1</h1>
 
-  URL:
-  <a href="https://stackblitz.com/edit/web-platform-qtahqb">
-    https://stackblitz.com/edit/web-platform-qtahqb</a>
-  <br />
-    GitHub:
-  <a href="https://github.com/CHERR4/M07-Visualizacion-Datos">
+  URL: <a href="https://stackblitz.com/edit/web-platform-gg4bsv"> https://stackblitz.com/edit/web-platform-gg4bsv</a>
+  <br/>
+  GitHub: <a href="https://github.com/CHERR4/M07-Visualizacion-Datos">
     https://github.com/CHERR4/M07-Visualizacion-Datos
   </a>
-  <br />
-    Jose Ramón Casero Fuentes
+  <br/>
+  Jose Ramón Casero Fuentes
 
   <h2>Emisiones C02</h2>
   <iframe width="600" height="371" seamless frameborder="0" scrolling="no"
@@ -47,24 +25,28 @@ new d3plus.Treemap()
 
   <iframe width="600" height="371" seamless frameborder="0" scrolling="no"
     src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQK-dzIYK5JLYAnAlqo1Km_4Hip2KIC-PNf69HiMGeXEfBJjq5TmHkYh6TOEj6qn4vPo0JluXc5UIRx/pubchart?oid=994387737&amp;format=interactive"></iframe>
-  <h1>Visualización - AG2</h1>
-  <a href="https://ibb.co/260HCnt"><img
-        src="https://i.ibb.co/3s5QjrN/Dashboard-AG2-2.png"
-        alt="Dashboard-AG2-2"
-        border="0"
-    /></a>
-  <a href="https://ibb.co/RY0C6K3"><img
-        src="https://i.ibb.co/TY8H0G4/Dispersi-n-Burbujas.png"
-        alt="Dispersi-n-Burbujas"
-        border="0"
-    /></a>
 
-  <h1>Visualización - AG3</h1>
+  <iframe width="600" height="371" seamless frameborder="0" scrolling="no"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQK-dzIYK5JLYAnAlqo1Km_4Hip2KIC-PNf69HiMGeXEfBJjq5TmHkYh6TOEj6qn4vPo0JluXc5UIRx/pubchart?oid=1907526830&amp;format=interactive"></iframe>
+
+  <h1> Visualización - AG2 </h1>
+  <a
+    href="https://ibb.co/260HCnt"><img src="https://i.ibb.co/3s5QjrN/Dashboard-AG2-2.png" alt="Dashboard-AG2-2" border="0"></a>
+  <a
+    href="https://ibb.co/RY0C6K3"><img src="https://i.ibb.co/TY8H0G4/Dispersi-n-Burbujas.png" alt="Dispersi-n-Burbujas" border="0"></a>
+
+  <h1> Visualización - AG3 </h1>
   <a> Google Colab: </a>
   <a
     href="https://colab.research.google.com/drive/1aXKry3vLF3TAaC_BLnIwM_Aszju07PVU?usp=sharing">https://colab.research.google.com/drive/1aXKry3vLF3TAaC_BLnIwM_Aszju07PVU?usp=sharing</a>
-  <h2>Gráfico de Columnas con D3Plus</h2>
+  <h2> Gráfico de Columnas con D3Plus</h2>
   <div id="viz1"></div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3plus/1.9.2/d3plus.full.min.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
