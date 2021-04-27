@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Jude moon">
+  <title>Visualización clima-economía</title>
+</head>
+
+<body>
+  <h1 class="main-title"> Economía y clima </h1>
+  <h4 class="main-autor">Nombre: Jose Ramón Casero Fuentes</h3>
+    <h4 class="main-url">Url: <a
+        href="https://stackblitz.com/edit/js-3imq8z?file=index.html">https://stackblitz.com/edit/js-3imq8z?file=index.html</a>
+      </h3>
+      <h4 class="main-fecha">Fecha: 27/04/2021</h4>
+      <br>
+      <br>
+
+      <div class="summary">
+        <h2 class="text-title">Resumen</h2>
+        <div class="text">
+          El objetivo de este proyecto es crear visualizaciones efectivas para intentar demostrar la siguiente
+          hipótesis: cuanto mayor es la temperatura del país tiende a ser peor la economía del mismo. Esta hipótesis se
+          basa en que generalmente lo países del norte, zonas frías suelen ser aventajados económicamente, y quiero
+          demostrar en cierta manera que esto se debe porque este mal clima hace que la gente de dichos paises tienda a
+          estar menos en la calle y a socializar menos. Esto hace que sean mejor trabajadores.
+          <br>
+          <br>
+          Vamos a ver en un conjunto de visualizaciones, tanto la situación económica del país como la temperatura media del mismo. También voy a nombrar la variable precipitaciones para intentar ver si también hay un impacto en la misma.
+        </div>
+        <div class="metadato">
+          La audicencia de este proyecto es principalmente el profesor que nos ha solicitado realizar este trabajo,
+          además de los otros alumnos que también quisieran verlo.
+          El objetivo es demostrar que una temperatura media más baja suele promover un buen desarrollo económico del
+          país, además de utilizar distintas técnicas de obtención y visualización de datos vistas en la asignatura,
+          además de algunas adicionales que crea convenientes.
+        </div>
+        <br/>
+        <br/>
+
+      </div>
+      <div class="plot">
+        <h2 class="plot-title">Ingresos por país</h2>
+        <div class="text">
+          Es un gráfico de un mapa mundial en el que muestro con distintos colores los ingresos medios de cada país,
+          siendo el rojo el color que indica ingresos más bajos, he utilizado este color porque indica como peligro
+          y amarillo, que es el color del dinero para los países con mayores ingresos. Para realizar este gráfico he
+          obtenido los datos de la api del <a
+            href="http://api.worldbank.org/v2/country?format=json&per_page=300">worldbank</a> utilizando python en
+          google colab (pondré al final del fichero los distintos recursos que he utilizado y sus enlaces) y
+          mediante la herramienta <b> Datawrapper </b>, he generado el mapa. Este mapa es interactivo, podemos hacer
+          zoom en las distintas partes del mismo, además ver los códigos de los distintos países o filtrarlos por
+          ingresos usando la leyenda.
+
+        </div>
+        <div id="plotContainer1">
+          <iframe title="Ingresos por país" aria-label="Map" id="datawrapper-chart-z9XXe"
+            src="https://datawrapper.dwcdn.net/z9XXe/1/" scrolling="no" frameborder="0"
+            style="width: 0; min-width: 100% !important; border: none;" height="374"></iframe>
+          <script type="text/javascript">
+            !function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+          </script>
+        </div>
+      </div>
+      <div class="text">
+        Una vez visualizado los ingresos de los distintos países vamos a proceder a mostrar en un mapa similar la
+        variable temperatura, que es en la que me quiero centrar en este análisis.
+      </div>
+      <div class="plot">
+        <h2 class="plot-title">Temperatura media de cada país</h2>
+        <div class="text">
+          En este mapa se muestra la variable continua temperatura media para cada país en una escala cromática
+          que va desde el rojo para aquellos países más calurosos hasta el azul para los países más fríos. Como el
+          mapa anterior ha sido generado con la herramienta datawrapper, esta vez pierde la interactividad con la
+          leyenda debido a que es una variable continua.
+          Si nos paramos a visualizarlo, podemos ver una distribución de los colores similar al anterior, y más
+          que en África por ejemplo que ya sabemos que es un continente muy caluroso y con una economía muy mala,
+          pero en este caso creo que se puede deber a muchas otras cosas, a mí me gustaría que se observase como
+          los países con más ingresos se suelen situar en franjas con bastante más frío.
+        </div>
+        <div id="plotContainer1">
+          <iframe title="Temperaturas" aria-label="Map" id="datawrapper-chart-pXevt"
+            src="https://datawrapper.dwcdn.net/pXevt/2/" scrolling="no" frameborder="0"
+            style="width: 0; min-width: 100% !important; border: none;" height="332"></iframe>
+          <script type="text/javascript">
+            !function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+          </script>
+        </div>
+      </div>
+      <div class="text">
+        Para sacar más conclusiones sobre esto quiero observar las distribuciones de la variable de temperatura
+        para las distintas variables de ganancia.
+      </div>
+      <div class="plot">
+        <h2 class="plot-title">Distribución de temperatura por ganancia</h2>
+        <div class="text">
+          La siguiente visualización mediante líneas ha sido realizada en <b> Python </b> haciendo uso de la
+          librería <b> Seaborn </b>, en ella podemos ver la distribución de la variable de temperatura para los
+          distintos ingresos. Si observamos que las distribuciones tienen distintas formas, podemos extraer
+          información sobre qué temperaturas son más óptimas para cada desarrollo y si nos fijamos bien, todas las
+          campanas son muy similares excepto una, la de grandes ingresos, la cual mantiene el pico que tienen el
+          resto de las distribuciones y además tiene otro pico en temperaturas bajas bastante más pronunciado que el
+          resto. Eso podría servirnos para avalar nuestra conclusión.
+        </div>
+        <div id="plotContainer1">
+          <a
+            href="https://ibb.co/PD9nZxt"><img src="https://i.ibb.co/qJWfMBx/Selection-908.png" alt="Selection-908" border="0"></a>
+        </div>
+        <div class="text">
+          Esto que comentamos no sucede igual en otras variables como la lluvia
+        </div>
+        <div id="plotContainer1">
+          <a
+            href="https://ibb.co/m5Lkgfw"><img src="https://i.ibb.co/HTW635s/Selection-909.png" alt="Selection-909" border="0"></a>
+        </div>
+        <div class="text">
+
+          En el caso de la lluvia, todas las variables tienen una distribución similar, teniendo el pico en el mismo
+          rango de la variables. Luego veremos otros motivos por los que considero la variable temperatura bastane
+          más relevante que la de lluvia.
+        </div>
+      </div>
+      <div class="plot">
+        <h2 class="plot-title">Distribución de ingreso por temperatura</h2>
+        <div class="text">
+          Hemos realizado este gráfico de barras con el objetivo de comparar la distribución de la variable de
+          ingreso en las temperaturas, para llevarlo a cabo hemos utilizado otra vez la librería seaborn. El
+          gráfico de barras es una manera muy eficaz de comparar magnitudes. Como vemos en todos los rangos de
+          temperatura, las magnitudes de ingreso siguen una distribución bastante uniforme, menos en el primer
+          cuartil de temperatura donde hay un pico my grande de los paises de ingresos altos, este cuartil es el de
+          menor temperatura.
+        </div>
+        <div id="plotContainer1">
+          <a
+            href="https://ibb.co/GTptWkG"><img src="https://i.ibb.co/PQj9c4J/Selection-910.png" alt="Selection-910" border="0"></a>
+        </div>
+
+      </div>
+      <div class="plot">
+        <h2 class="plot-title">PIB per Cápita y temperatura en España</h2>
+        <div class="text">
+          Los siguientes gráficos tratan de explicar esta misma tendencia que hemos mostrado a nivel mundial a nivel
+          de España. El primero se ha realizado haciendo web scrapping mediante Google Sheets a la siguiente página
+          web de
+          <a href="https://datosmacro.expansion.com/pib/espana-comunidades-autonomas
+">datosmacro</a> y posteriormente representando los datos en Datawrapper.
+          En el los colores más azules indican un mayor PIB per cápita, como podemos ver estos se concentran en el
+          norte, que suelen ser zonas de menores temperaturas.
+        </div>
+        <div id="plotContainer1">
+          <iframe title="Pib per capita" aria-label="Map" id="datawrapper-chart-ticUg"
+            src="https://datawrapper.dwcdn.net/ticUg/1/" scrolling="no" frameborder="0"
+            style="width: 0; min-width: 100% !important; border: none;" height="456"></iframe>
+          <script type="text/javascript">
+            !function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+          </script>
+        </div>
+        <div class="text">
+
+          Para apoyar estoy vamos a utilizar un gráfico que pertenece a la web <a
+            href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos">http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos</a>,
+          ya que no hemos podido encontrar estos datos. También es cierto que me ha faltado algo de tiempo para
+          buscarlos. Este gráfico representa los valores medios de temperatura anual por zonas geográficas en
+          España. Con estos dos gráficos, observamos la misma tendencia que se daba en el mapa a nivel mundial, las
+          zonas más frías tienen mayor capital.
+        </div>
+        <div id="plotContainer1">
+          <a href="https://ibb.co/GVLDsNh"><img src="https://i.ibb.co/FBM1sCP/image.png" alt="image" border="0"></a>
+
+        </div>
+      </div>
+      <div class="plot">
+        <h2 class="plot-title">Correlación entre PIB-Temperatura</h2>
+        <div class="text">
+          Finalmente, quería ver la correlación entre las variables que hemos mencionado en este estudio. Para lo
+          cual necesitaba valores más explícitos del PIB a nivel mundial. Para ello accedí a la página de la
+          Wikipedia <a
+            href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita">https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita</a>
+          y realicé web scrapping mediante <b> BeautifulSoup </b>, una librería de Python. Esto mismo podía haberse
+          realizado en Google Sheets, pero quería introducir algun método nuevo, que no estuviese en la asignatura y
+          además esto me permitía poder realizar un análisis de datos en Python, de lo cual veremos luego los
+          resultados.
+          <br/>
+                Podemos ver una matriz de correlación de las variables PIB per Cápita de cada país y sus temperaturas y precipitaciones medias. Esta ha sido realizada mediante
+          <b> Pandas </b> para obtener la matriz y <b> Seaborn </b> para representarla. Incluyo también el valor de
+          la correlación de forma explícita porque puede ser incluso más interesante.
+        </div>
+        <div id="plotContainer1">
+          <a
+            href="https://ibb.co/7Nd3kB5"><img src="https://i.ibb.co/yBcz4K1/Selection-911.png" alt="Selection-911" border="0"></a>
+        </div>
+        <div class="text">
+          De esta correlación podemos darnos cuenta de dos cosas principalmente:
+          <br/>
+              1- La <b> correlación </b> de la variable temperatura es <b> negativa </b>, esto quiere decir que conforme
+          aumenta esta, disminuye la variable PIB per cápita.
+          <br/>
+              2- La variable <b> temperatura </b> tiene una <b> correlación más alta </b> que la variable precipitación en
+          valor absoluto.
+        </div>
+      </div>
+      <div class="plot">
+        <h2 class="plot-title">Regresión temperatura-PIB per Cápita</h2>
+        <div class="text">
+          Aprovechando los datos extraídos de Wikipedia, podemos realizar una regresión lineal entre los valores de
+          la temperatura y los del PIB per cápita. La regresión se ha realizado con Scikit-learn, y para mostrarla y
+          generar el gráficos hemos utilizado la librería de Python <b> plotly </b>, en el gráfico se muestra la
+          nube de puntos de los valores de temperatura y PIB de cada país y además la recta resultante de la
+          regresión, vamos a echarle un ojo.
+        </div>
+        <div id="plotContainer1">
+          <a
+            href="https://ibb.co/PNL1s8x"><img src="https://i.ibb.co/CzcVpFB/Selection-912.png" alt="Selection-912" border="0"></a>
+        </div>
+        <div class="text">
+          Esta recta con pendiente decreciente es una muestra más de esta correlación negativa entre las variables,
+          ahora vamos a pasa a exponer algunas de las conclusiones del ejercicio
+        </div>
+      </div>
+      <div class="summary">
+        <h2 class="text-title">Conclusiones</h2>
+        <div class="text">
+          Yo por mi parte quiero decir que he realizado este trabajo con el objetivo de explicar la hipótesis de que la
+          economía en los países nórdicos funciona mejor, entre otros muchísimos motivos, debido a que al tener peor
+          tiempo, tienden a gastar menos tiempo en salir a la calle y eso hace que sean mucho más responsables a la hora
+          de trabajar, piensan más en el trabajo. Como han intentado demostrar los diferentes gráficos, parece que esta
+          hipótesis se cumple y que la temperatura (clima) ha sido una variable influyente en el correspondiente
+          desarrollo económico, aunque esta ha no ha sido la responsable como tal del mismo.
+          <br>
+          <br>
+          Además, una frase que quería añadir a este trabajo es que "correlación no indica causalidad", esto quiere decir que aunque parezca que haya cierta correlación entre distintas variables, esto no quiere decir que una cause la otra, aunque yo sí que creo que una puede tener un pequeño factor de causalidad en la otra en este caso.
+        </div>
+
+      </div>
+      <div class="summary">
+        <h2 class="text-title">Tecnologías</h2>
+        <div class="text">
+          <b>Google Colab:</b> <a
+            href="https://colab.research.google.com/drive/10hhds9__Lo8mhnsRhhyi0EaddkoPpuev?usp=sharing">
+            https://colab.research.google.com/drive/10hhds9__Lo8mhnsRhhyi0EaddkoPpuev?usp=sharing </a> para trabajar con
+          el código en Python.
+          <br/>
+          <b> Google Sheets: </b> <a
+            href="https://docs.google.com/spreadsheets/d/1yJF00J0kbSRVi26DuFnyLc4hacTDSLJIH1oQzOw8Gf8/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1yJF00J0kbSRVi26DuFnyLc4hacTDSLJIH1oQzOw8Gf8/edit?usp=sharing
+          </a> para hacer web scrapping a datosmacro.
+          <br/>
+          <b> Datosmacro: </b> <a href="https://datosmacro.expansion.com/pib/espana-comunidades-autonomas">
+            https://datosmacro.expansion.com/pib/espana-comunidades-autonomas </a> de aquí he obtenido los datos de PIB
+          por comunidades autónomas.
+          <br/>
+          <b> wikipedia: </b> <a
+            href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita">https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita</a>
+          me ha ofrecido los datos del PIB por el Fondo Monetario Internacional de los distintos países.
+          <br/>
+          <b> worldbank (países): </b> <a
+            href="http://api.worldbank.org/v2/country?format=json&per_page=300">http://api.worldbank.org/v2/country?format=json&per_page=300</a>
+          de esta API he obtenido los distintos países y sus ingresos de forma categórica.
+          <br/>
+          <b> worldbank (datos climáticos): </b> <a
+            href="https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api">https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api</a>
+          esta API me ha sido muy útil, pues de ella he obtenido todos los datos climáticos de los distintos países.
+          <br/>
+          <b> AEMET: </b> <a
+            href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos">
+            http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos </a> de aquí he obtendo
+          el gráfico de temperatura media anual por zonas en España.
+        </div>
+      </div>
+      <div class="summary">
+        <h2 class="text-title">Recursos utilizados</h2>
+        <div class="text">
+          <b>Google Colab:</b> <a
+            href="https://colab.research.google.com/drive/10hhds9__Lo8mhnsRhhyi0EaddkoPpuev?usp=sharing">
+            https://colab.research.google.com/drive/10hhds9__Lo8mhnsRhhyi0EaddkoPpuev?usp=sharing </a> para trabajar con
+          el código en Python.
+          <br/>
+          <b> Google Sheets: </b> <a
+            href="https://docs.google.com/spreadsheets/d/1yJF00J0kbSRVi26DuFnyLc4hacTDSLJIH1oQzOw8Gf8/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1yJF00J0kbSRVi26DuFnyLc4hacTDSLJIH1oQzOw8Gf8/edit?usp=sharing
+          </a> para hacer web scrapping a datosmacro.
+          <br/>
+          <b> Datosmacro: </b> <a href="https://datosmacro.expansion.com/pib/espana-comunidades-autonomas">
+            https://datosmacro.expansion.com/pib/espana-comunidades-autonomas </a> de aquí he obtenido los datos de PIB
+          por comunidades autónomas.
+          <br/>
+          <b> wikipedia: </b> <a
+            href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita">https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita</a>
+          me ha ofrecido los datos del PIB por el Fondo Monetario Internacional de los distintos países.
+          <br/>
+          <b> worldbank (países): </b> <a
+            href="http://api.worldbank.org/v2/country?format=json&per_page=300">http://api.worldbank.org/v2/country?format=json&per_page=300</a>
+          de esta API he obtenido los distintos países y sus ingresos de forma categórica.
+          <br/>
+          <b> worldbank (datos climáticos): </b> <a
+            href="https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api">https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api</a>
+          esta API me ha sido muy útil, pues de ella he obtenido todos los datos climáticos de los distintos países.
+          <br/>
+          <b> AEMET: </b> <a
+            href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos">
+            http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos </a> de aquí he obtendo
+          el gráfico de temperatura media anual por zonas en España.
+        </div>
+      </div>
+      <div class="summary">
+        <h2 class="text-title">Recursos utilizados</h2>
+        <div class="text">
+          <b> Datosmacro: </b> <a href="https://datosmacro.expansion.com/pib/espana-comunidades-autonomas">
+            https://datosmacro.expansion.com/pib/espana-comunidades-autonomas </a> de aquí he obtenido los datos de PIB
+          por comunidades autónomas.
+          <br/>
+          <b> Wikipedia: </b> <a
+            href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita">https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita</a>
+          me ha ofrecido los datos del PIB por el Fondo Monetario Internacional de los distintos países.
+          <br/>
+          <b> Worldbank (países): </b> <a
+            href="http://api.worldbank.org/v2/country?format=json&per_page=300">http://api.worldbank.org/v2/country?format=json&per_page=300</a>
+          de esta API he obtenido los distintos países y sus ingresos de forma categórica.
+          <br/>
+          <b> Worldbank (datos climáticos): </b> <a
+            href="https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api">https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api</a>
+          esta API me ha sido muy útil, pues de ella he obtenido todos los datos climáticos de los distintos países.
+          <br/>
+          <b> AEMET: </b> <a
+            href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos">
+            http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos </a> de aquí he obtendo
+          el gráfico de temperatura media anual por zonas en España.
+        </div>
+      </div>
+      <div class="summary">
+        <h2 class="text-title">Tecnologías</h2>
+        <div class="text">
+          <b>stackblitz:</b><a
+            href="https://stackblitz.com/edit/js-3imq8z?file=index.html">https://stackblitz.com/edit/js-3imq8z?file=index.html</a>
+          para redactar el informe y agrupar todos los gráficos.
+          <br/>
+          <b>Google Colab:</b> <a
+            href="https://colab.research.google.com/drive/10hhds9__Lo8mhnsRhhyi0EaddkoPpuev?usp=sharing">
+            https://colab.research.google.com/drive/10hhds9__Lo8mhnsRhhyi0EaddkoPpuev?usp=sharing </a> para trabajar con
+          el código en Python.
+          <br/>
+          <b> Google Sheets: </b> <a
+            href="https://docs.google.com/spreadsheets/d/1yJF00J0kbSRVi26DuFnyLc4hacTDSLJIH1oQzOw8Gf8/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1yJF00J0kbSRVi26DuFnyLc4hacTDSLJIH1oQzOw8Gf8/edit?usp=sharing
+          </a> para hacer web scrapping a datosmacro.
+          <br/>
+          <b> Data wrapper: </b> ha sido útil para generar los distintos gráficos de mapas, tanto de España como a nivel
+          mundial.
+          <br/>
+          <b> Seaborn, plotly, pyplot: </b> librerías útiles para la visualización de datos en Python.
+          <br/>
+          <b> BeautifulSoup: </b> librería de python para hacer web scrapping, la he utilizado para obtener los datos de
+          Wikipedia
+          <br/>
+          <b> pycountry: </b> esta librería la he utilizado para obtener el código ISO3 de los países conociendo su
+          nombre en inglés.
+          <br/>
+          <b> scikit-learn: </b> es la librería que he utilizado para hacer la regresión lineal.
+        </div>
+
+      </div>
+</body>
+
+</html>
